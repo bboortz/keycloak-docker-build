@@ -1,0 +1,6 @@
+[submodule "keycloak"]
+	path = keycloak
+	url = https://github.com/keycloak/keycloak.git
+[submodule "keycloak-docker"]
+	path = keycloak-docker
+	url = https://github.com/jboss-dockerfiles/keycloak.git
