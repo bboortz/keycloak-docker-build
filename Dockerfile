@@ -25,8 +25,9 @@ RUN yum install -y epel-release && yum install -y jq && yum clean all
 USER jboss
 
 COPY --from=build /build/keycloak/distribution/server-dist/target/keycloak-$KEYCLOAK_VERSION.tar.gz /opt/jboss
-RUN cd /opt/jboss/ && ls -la && tar zxf keycloak-${KEYCLOAK_VERSION}.tar.gz && mv /opt/jboss/keycloak-${KEYCLOAK_VERSION} /opt/jboss/keycloak
+RUN cd /opt/jboss/ && ls -la && tar zxf keycloak-${KEYCLOAK_VERSION}.tar.gz && rm *.tar.gz && mv /opt/jboss/keycloak-${KEYCLOAK_VERSION} /opt/jboss/keycloak
 
+ADD standalone-ha.xml /opt/jboss/keycloak/standalone/configuration/
 ADD keycloak-docker/server/docker-entrypoint.sh /opt/jboss/
 
 ADD keycloak-docker/server/cli /opt/jboss/keycloak/cli
